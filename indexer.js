@@ -10,7 +10,7 @@ const hotelsSchema = {
     'fields': [
         { 'name': 'hotel_name', 'type': 'string'},
         { 'name': 'address', 'type': 'string'},
-        { 'name': 'cordinates', 'type': 'geopoint' },
+        { 'name': 'coordinates', 'type': 'geopoint' },
     ]
 }
 
@@ -24,5 +24,6 @@ client.collections().create(hotelsSchema)
             let hotelDocument = JSON.parse(line);
             
             client.collections('hotels').documents().create(hotelDocument);
+            console.log(`coordinates: ${hotelDocument.coordinates}`)
         });
 });
