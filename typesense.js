@@ -1,4 +1,4 @@
-require('dotenv').config();
+import 'dotenv/config';
 import { Client } from 'typesense';
 
 // Create a new client
