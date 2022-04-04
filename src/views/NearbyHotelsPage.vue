@@ -1,8 +1,22 @@
 <template>
-  <div>
-    <div class="row px-3 mt-0 mb-2 text-center d-flex">
-      <div class="col-md-3 col-12" v-for="hotel in hotels" :key="hotel.id">
-        <Hotel :hotel="hotel" />
+  <div class="container">
+    <div class="row text-center mt-5 mb-5 px-5">
+      <div class="col-12 col-md-6 mr-md-auto ml-md-auto">
+        <h1>Hotels Around You😍</h1>
+        <small>
+          <router-link to="/">Back to Home</router-link>
+        </small>
+      </div>
+    </div>
+
+    <div class="row" id="card-wrapper">
+      <div
+        class="col-md-3 col-12 border shadow-sm m-2"
+        v-for="hotel in hotels"
+        :key="hotel.document.id"
+        id="card"
+      >
+        <Hotel :hotel="hotel.document" />
       </div>
     </div>
   </div>
@@ -19,15 +33,13 @@ export default {
     return {
       hotels: [],
 
+      // Lagos, Nigeria Coordinates
       userLatitude: 6.465422,
       userLongitude: 3.406448,
 
-      searchParams: {
-        q: "*",
-        query_by: "hotel_name",
-        filter_by: `coordinates:(${this.userLatitude}, ${this.userLongitude}, 1000 km)`,
-        sort_by: `coordinates(${this.userLatitude}, ${this.userLongitude}):asc`,
-      },
+      // New York Coordinates
+      // userLatitude: 40.71427,
+      // userLongitude: -74.00597,
     };
   },
 
@@ -37,13 +49,21 @@ export default {
 
   methods: {
     getHotels() {
+      const searchParams = {
+        q: "*",
+        query_by: "hotel_name",
+        filter_by: `coordinates:(${this.userLatitude}, ${this.userLongitude}, 1000 km)`,
+        sort_by: `coordinates(${this.userLatitude}, ${this.userLongitude}):asc`,
+      };
+
       client
         .collections("hotels")
         .documents()
-        .search(this.searchParams)
-        .then(function (results) {
-          console.log(results);
-          this.hotels = results;
+        .search(searchParams)
+        .then((results) => {
+          console.log(`server response: ${results}`);
+          this.hotels = results["hits"];
+          console.log(`hotels: ${this.hotels}`);
         })
         .catch((error) => {
           console.log(error);
@@ -51,10 +71,17 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
     this.getHotels();
   },
 };
 </script>
 
-<style></style>
+<style>
+#card-wrapper {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

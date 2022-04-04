@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container">
     <div class="row text-center mt-5 mb-5 px-5">
       <div class="col-12 col-md-6 mr-md-auto ml-md-auto">
         <h1>Welcome to Our Nearby Hotels Application👋</h1>

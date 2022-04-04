@@ -13,7 +13,10 @@
         <span id="hotelName">{{ hotel.hotel_name }}</span>
       </div>
       <div>
-        <span id="address" class="mt-0">{{ hotel.address }}</span>
+        <span id="address" class="mt-0">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          {{ hotel.address }}
+        </span>
       </div>
     </div>
   </div>
@@ -35,11 +38,13 @@ export default {
 <style scoped>
 #address {
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
+  color: #bfc1c2;
 }
 
 #hotelName {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
+  font-weight: bolder;
 }
 
 #hotelImageBackground {
@@ -53,11 +58,13 @@ export default {
 
 @media only screen and (max-width: 640px) {
   #hotelName {
-    font-size: 1.4rem;
+    font-size: 1rem;
+    font-weight: bold;
   }
   #address {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: 400;
+    color: #bfc1c2;
   }
 }
 </style>
