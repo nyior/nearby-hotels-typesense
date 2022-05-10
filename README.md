@@ -1,4 +1,5 @@
 # nearby-hotels
+Wrote this for the folks at Logrocket :)  See tutorial [here]( https://blog.logrocket.com/build-location-aware-application-vue-typesense/)                                             
 
 ## Project setup
 ```
